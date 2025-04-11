@@ -1,15 +1,21 @@
-import requests
+# import requests
 import torch
-from PIL import Image
-from io import BytesIO
+# from PIL import Image
+# from io import BytesIO
 from transformers import AutoProcessor, AutoModelForImageTextToText
-from datasets import load_metric
+# from datasets import load_metric
+import evaluate
 
 def compute_metrics(predictions, references):
 
-    bleu = load_metric("bleu")
-    rouge = load_metric("rouge")
-    meteor = load_metric("meteor")
+    # bleu = load_metric("bleu")
+    # rouge = load_metric("rouge")
+    # meteor = load_metric("meteor")
+
+    bleu = evaluate.load("bleu")
+    rouge = evaluate.load("rouge")
+    meteor = evaluate.load("meteor")
+
 
     bleu_score = bleu.compute(predictions=predictions, references=references)
     rouge_score = rouge.compute(predictions=predictions, references=references)
